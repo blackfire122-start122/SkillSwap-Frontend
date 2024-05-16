@@ -1,5 +1,5 @@
 import Header from "../components/Header/Header";
-import client from "../lib/client";
+import {client} from "../lib/client";
 import {useEffect, useState} from "react";
 
 function Home() {
@@ -14,6 +14,7 @@ function Home() {
                 console.log(error);
             })
     }
+
 
     useEffect(()=>{
         getUser()

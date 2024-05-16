@@ -1,6 +1,6 @@
-import client from "../lib/client"
+import {client} from "../lib/client"
 import {useEffect, useState} from "react"
-import { useNavigate  } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 function Profile() {
     const [user, setUser] = useState({})
@@ -12,6 +12,10 @@ function Profile() {
                 setUser(response.data)
             })
             .catch(function (error) {
+                if (!error.response){
+                    console.log(error)
+                    return
+                }
                 if(error.response.status === 401){
                     navigate('/login')
                 }else {
@@ -27,7 +31,9 @@ function Profile() {
     return (
         <>
             <h1>{user.username}</h1>
-            {/*<Header user={user}/>*/}
+            <Link to="/changeData">
+                <h2>Change data</h2>
+            </Link>
         </>
     )
 }

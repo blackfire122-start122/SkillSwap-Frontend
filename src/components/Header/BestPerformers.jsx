@@ -1,6 +1,6 @@
 import BestPerformer from "./BestPerformerItem";
 import style from "./../../styles/BestPerformers.module.css"
-import client from "../../lib/client";
+import {client} from "../../lib/client";
 import {useEffect, useState} from "react";
 
 function BestPerformers() {

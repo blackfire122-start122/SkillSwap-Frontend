@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import { useNavigate  } from 'react-router-dom';
 import style from './../styles/Login.module.css'
-import client from "../lib/client"
+import {client} from "../lib/client"
 
 function Login() {
     const [username, setUsername] = useState('')
@@ -17,13 +17,19 @@ function Login() {
                 if (response.data.Login === "OK"){
                     navigate('/');
                 } else if (response.data.Login === "User has been registered successfully"){
-                    navigate('/');
+                    navigate('/profile');
                 }
             })
             .catch(function (error) {
+                if (!error.response){
+                    console.log(error)
+                    return
+                }
                 if (error.response.data.Login === "Not all field"){
                     setError(error.response.data.Login)
-                }else {
+                }else if (error.response.data.Login === "Error login"){
+                    setError("Bad password")
+                } else {
                     console.log(error)
                 }
             })

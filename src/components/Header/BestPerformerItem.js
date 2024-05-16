@@ -1,6 +1,9 @@
 import userImage from "./../../images/user.png"
 
 function BestPerformer({bestPerformer}) {
+    if (!bestPerformer){
+        return
+    }
     const renderStars = () => {
         const stars = []
         const maxRating = 100

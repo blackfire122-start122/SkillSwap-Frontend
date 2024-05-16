@@ -1,12 +1,13 @@
 import style from "./../../styles/ProfileLinks.module.css"
 import userImage from "./../../images/user.png"
+import {Link} from "react-router-dom"
 
-function ProfileLinks() {
+function ProfileLinks({user}) {
     return (
-        <a className={style.profileLinks} href="#">
-            <img src={userImage} alt="user"/>
-            <h3 className={style.loginBtn}>Login</h3>
-        </a>
+        <Link to= {user.username ? "/profile":"/login"} className={style.profileLinks}>
+            <img src={userImage} alt={user.username}/>
+            <h3 className={style.loginBtn}>{user.username ? user.username:"Login"}</h3>
+        </Link>
     )
 }
 

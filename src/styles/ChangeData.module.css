@@ -13,7 +13,7 @@
     background-color: #f9f9f9;
 }
 
-.input {
+.input, .select{
     width: calc(100% - 20px);
     margin: 10px 0;
     padding: 8px;

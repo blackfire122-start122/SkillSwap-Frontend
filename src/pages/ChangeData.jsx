@@ -2,6 +2,7 @@ import {client} from "../lib/client"
 import {useEffect, useState} from "react"
 import { useNavigate  } from 'react-router-dom'
 import style from "../styles/ChangeData.module.css";
+import FindSkill from "../components/ChangeData/FindSkill";
 
 function ChangeData() {
     const [username, setUsername] = useState("")
@@ -102,6 +103,16 @@ function ChangeData() {
 
                 <label>
                     Image:
+                    <input
+                        type="file"
+                        className={style.input}
+                    />
+                </label>
+
+                <FindSkill/>
+
+                <label>
+                    Categories:
                     <input
                         type="file"
                         className={style.input}

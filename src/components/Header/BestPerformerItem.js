@@ -1,4 +1,6 @@
 import userImage from "./../../images/user.png"
+import {Link} from "react-router-dom";
+import style from "./../../styles/BestPerformerItem.module.css"
 
 function BestPerformer({bestPerformer}) {
     if (!bestPerformer){
@@ -21,11 +23,11 @@ function BestPerformer({bestPerformer}) {
     }
 
     return (
-        <div>
+        <Link to="/" className={style.bestPerformer}>
             <img src={userImage} alt={bestPerformer.username}/>
             <h4>{bestPerformer.username}</h4>
             <div>{renderStars()}</div>
-        </div>
+        </Link>
     )
 }
 

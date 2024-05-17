@@ -1,6 +1,9 @@
 import Header from "../components/Header/Header";
 import {client} from "../lib/client";
 import {useEffect, useState} from "react";
+import Find from "../components/Find";
+import style from "../styles/Home.module.css"
+
 
 function Home() {
     const [user, setUser] = useState({})
@@ -21,9 +24,11 @@ function Home() {
     }, [])
 
     return (
-        <>
+        <main className={style.main}>
+
             <Header user={user}/>
-        </>
+            <Find/>
+        </main>
     )
 }
 

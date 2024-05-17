@@ -1,6 +1,8 @@
-import {client} from "../lib/client"
+import {baseURL, client} from "../lib/client"
 import {useEffect, useState} from "react"
 import {Link, useNavigate} from 'react-router-dom'
+import style from "../styles/Profile.module.css"
+import userImage from "../images/user.png";
 
 function Profile() {
     const [user, setUser] = useState({})
@@ -28,13 +30,28 @@ function Profile() {
         getUser()
     }, [])
 
+    function handleLogout(){
+        client.get("api/v1/user/logout")
+            .then(function (response) {
+                navigate('/')
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+    }
+
     return (
-        <>
-            <h1>{user.username}</h1>
-            <Link to="/changeData">
-                <h2>Change data</h2>
-            </Link>
-        </>
+        <div className={style.profile}>
+            <img className={style.userImg} src={user.image ? baseURL+"api/v1/user/image/"+user.image : userImage} alt={user.username || "user Img"}/>
+            <div className={style.userInfo}>
+                <h1>{user.username}</h1>
+
+                <Link className={style.changeDataBtn} to="/changeData">
+                    <h2>Change data</h2>
+                </Link>
+                <button onClick={handleLogout} className={style.btnLogout}>Logout</button>
+            </div>
+        </div>
     )
 }
 

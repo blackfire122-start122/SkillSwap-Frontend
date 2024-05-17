@@ -22,7 +22,8 @@ function BestPerformer({bestPerformer}) {
 
     return (
         <div>
-            <img src={userImage} alt={bestPerformer.name}/>
+            <img src={userImage} alt={bestPerformer.username}/>
+            <h4>{bestPerformer.username}</h4>
             <div>{renderStars()}</div>
         </div>
     )

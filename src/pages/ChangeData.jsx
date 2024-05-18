@@ -10,6 +10,7 @@ function ChangeData() {
     const [email, setEmail] = useState("")
     const [error, setError] = useState("")
     const [user, setUser] = useState({})
+    const [selectedSkills, setSelectedSkills] = useState([])
     const navigate = useNavigate ()
 
     function getUser() {
@@ -19,6 +20,7 @@ function ChangeData() {
                 setUsername(response.data.username)
                 setEmail(response.data.email)
                 setPhone(response.data.phone)
+                setSelectedSkills(Array.from(response.data.skills).map(skill => skill.id))
             })
             .catch(function (error) {
                 if (!error.response){
@@ -41,7 +43,14 @@ function ChangeData() {
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        client.post("api/v1/user/changeUser", {"username":username,"email":email,"phone":phone})
+        let data = {
+            "username":username,
+            "email":email,
+            "phone":phone,
+            "skills":selectedSkills,
+        }
+
+        client.post("api/v1/user/changeUser", data)
             .then(function (response) {
                 console.log(response)
                 setError("")
@@ -109,15 +118,8 @@ function ChangeData() {
                     />
                 </label>
 
-                <FindSkill/>
+                <FindSkill selectedSkills={selectedSkills} setSelectedSkills={setSelectedSkills} />
 
-                <label>
-                    Categories:
-                    <input
-                        type="file"
-                        className={style.input}
-                    />
-                </label>
 
                 <span className={style.error}>{error}</span>
                 <button type="submit" className={style.button}>Change</button>

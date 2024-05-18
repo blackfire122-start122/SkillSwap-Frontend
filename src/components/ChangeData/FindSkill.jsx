@@ -39,7 +39,7 @@ function FindSkill({selectedSkills, setSelectedSkills}) {
                 placeholder="Find skill"
                 onChange={(e)=>{handleFindSkill(e.target.value)}}
             />
-            <select onChange={handleSelectChange} value={selectedSkills} id="selectSkills" className={style.select} multiple name="Skills">
+            <select onChange={handleSelectChange} value={selectedSkills} className={style.select} multiple name="Skills">
                 {skills.map((skill)=>(
                     <option key={skill.id} value={skill.id}>{skill.name}</option>
                 ))}

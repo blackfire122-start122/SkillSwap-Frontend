@@ -3,24 +3,25 @@ import {useEffect, useState} from "react"
 import { useNavigate  } from 'react-router-dom'
 import style from "../styles/ChangeData.module.css";
 import FindSkill from "../components/ChangeData/FindSkill";
+import Categories from "../components/ChangeData/Categories";
 
 function ChangeData() {
     const [username, setUsername] = useState("")
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [error, setError] = useState("")
-    const [user, setUser] = useState({})
     const [selectedSkills, setSelectedSkills] = useState([])
+    const [selectedCategories, setSelectedCategories] = useState([])
     const navigate = useNavigate ()
 
     function getUser() {
         client.get("api/v1/user/getUser")
             .then(function (response) {
-                setUser(response.data)
                 setUsername(response.data.username)
                 setEmail(response.data.email)
                 setPhone(response.data.phone)
                 setSelectedSkills(Array.from(response.data.skills).map(skill => skill.id))
+                setSelectedCategories(Array.from(response.data.categories).map(category => category.id))
             })
             .catch(function (error) {
                 if (!error.response){
@@ -48,11 +49,11 @@ function ChangeData() {
             "email":email,
             "phone":phone,
             "skills":selectedSkills,
+            "categories":selectedCategories,
         }
 
         client.post("api/v1/user/changeUser", data)
             .then(function (response) {
-                console.log(response)
                 setError("")
             })
             .catch(function (error) {
@@ -70,7 +71,7 @@ function ChangeData() {
 
             client.post("api/v1/user/setImage", formData)
                 .then(function (response) {
-                    console.log(response)
+                    setError("")
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -118,8 +119,10 @@ function ChangeData() {
                     />
                 </label>
 
-                <FindSkill selectedSkills={selectedSkills} setSelectedSkills={setSelectedSkills} />
+                <Categories selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}
+                            setSelectedSkills={setSelectedSkills} selectedSkills={selectedSkills} />
 
+                <FindSkill selectedSkills={selectedSkills} setSelectedSkills={setSelectedSkills} />
 
                 <span className={style.error}>{error}</span>
                 <button type="submit" className={style.button}>Change</button>

@@ -2,18 +2,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .form {
+    margin: 2%;
     width: 300px;
     border: 1px solid #ccc;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: #f9f9f9;
 }
 
-.input, .select{
+.input, .select, .inputPrice{
     width: calc(100% - 20px);
     margin: 10px 0;
     padding: 8px;
@@ -37,4 +37,24 @@
 
 .error{
     color: red;
+}
+
+.priceSkill{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inputPrice{
+    width: 20%;
+}
+
+.labelImage {
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    height: 4em;
+    border-radius: 50%;
 }

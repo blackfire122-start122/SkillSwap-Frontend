@@ -3,13 +3,35 @@ import {useEffect, useState} from "react"
 import style from "../../styles/ChangeData.module.css";
 
 function Categories({selectedCategories, setSelectedCategories,
-                        setSelectedSkills, selectedSkills}) {
+                        setSelectedSkills, selectedSkills, skills, setSkills}) {
     const [categories, setCategories] = useState([])
 
     function handleFindCategory(find){
         client.get(`api/v1/findCategories?categoryName=${encodeURIComponent(find)}`)
             .then(function (response) {
                 setCategories(response.data)
+
+                let newCategories = []
+
+                for (let i = categories.length-1; i>=0; i--) {
+                    if (selectedCategories.includes(categories[i].id)){
+                        newCategories.push(categories[i])
+                    }
+                }
+
+                for (let i = response.data.length-1; i >= 0 ; i--) {
+                    let add = true
+                    newCategories.map((newCategory)=>{
+                        if (newCategory.id === response.data[i].id){
+                            add = false
+                        }
+                    })
+                    if (add){
+                        newCategories.push(response.data[i])
+                    }
+                }
+                setCategories(newCategories)
+
             })
             .catch(function (error) {
                 console.log(error)
@@ -33,8 +55,22 @@ function Categories({selectedCategories, setSelectedCategories,
 
     function handleChangeOption(e){
         if(e.target.selected){
-            let category = categories.find((category)=>{return category.id === e.target.value})
-            setSelectedSkills([...selectedSkills,...Array.from(category.skills).map(skill => skill.id)])
+            let category = categories.find((category) => {
+                return category.id === e.target.value
+            })
+
+            let notIncludeSkills = []
+
+            for (let i = category.skills.length-1; i >= 0; i--) {
+                if (!selectedSkills.includes(category.skills[i].id)){
+                    if (!skills.find((skill)=>{return skill.id === category.skills[i].id})) {
+                        setSkills([...skills, category.skills[i]])
+                    }
+                    notIncludeSkills.push(category.skills[i].id)
+                }
+            }
+
+            setSelectedSkills([...selectedSkills, ...notIncludeSkills])
         }
     }
 

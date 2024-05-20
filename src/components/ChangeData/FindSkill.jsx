@@ -1,14 +1,33 @@
 import {client} from "../../lib/client"
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
 import style from "../../styles/ChangeData.module.css";
 
-function FindSkill({selectedSkills, setSelectedSkills}) {
-    const [skills, setSkills] = useState([])
-
+function FindSkill({skills, setSkills,
+                       selectedSkills, setSelectedSkills,
+                       prices, setPrices}) {
     function handleFindSkill(find){
         client.get(`api/v1/findSkills?skillName=${encodeURIComponent(find)}`)
             .then(function (response) {
-                setSkills(response.data)
+                let newSkills = []
+
+                for (let i = skills.length-1; i>=0; i--) {
+                    if (selectedSkills.includes(skills[i].id)){
+                        newSkills.push(skills[i])
+                    }
+                }
+
+                for (let i = response.data.length-1; i >= 0 ; i--) {
+                    let add = true
+                    newSkills.map((newSkill)=>{
+                        if (newSkill.id === response.data[i].id){
+                            add = false
+                        }
+                    })
+                    if (add){
+                        newSkills.push(response.data[i])
+                    }
+                }
+                setSkills(newSkills)
             })
             .catch(function (error) {
                 console.log(error)
@@ -25,7 +44,12 @@ function FindSkill({selectedSkills, setSelectedSkills}) {
         for (const option of options) {
             if (option.selected) {
                 selectedValues.push(option.value);
+            }else{
+                if (prices[option.value]){
+                    delete prices[option.value]
+                }
             }
+            console.log(prices)
         }
         setSelectedSkills(selectedValues);
     }

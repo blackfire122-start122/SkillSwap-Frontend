@@ -4,14 +4,19 @@ import { useNavigate  } from 'react-router-dom'
 import style from "../styles/ChangeData.module.css";
 import FindSkill from "../components/ChangeData/FindSkill";
 import Categories from "../components/ChangeData/Categories";
+import PricesSkills from "../components/ChangeData/PricesSkills";
+import ImageUser from "../components/ChangeData/ImageUser";
 
 function ChangeData() {
     const [username, setUsername] = useState("")
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
+    const [image, setImage] = useState("")
     const [error, setError] = useState("")
+    const [skills, setSkills] = useState([])
     const [selectedSkills, setSelectedSkills] = useState([])
     const [selectedCategories, setSelectedCategories] = useState([])
+    const [prices, setPrices] = useState({})
     const navigate = useNavigate ()
 
     function getUser() {
@@ -20,6 +25,7 @@ function ChangeData() {
                 setUsername(response.data.username)
                 setEmail(response.data.email)
                 setPhone(response.data.phone)
+                setImage(response.data.image)
                 setSelectedSkills(Array.from(response.data.skills).map(skill => skill.id))
                 setSelectedCategories(Array.from(response.data.categories).map(category => category.id))
             })
@@ -50,6 +56,7 @@ function ChangeData() {
             "phone":phone,
             "skills":selectedSkills,
             "categories":selectedCategories,
+            "prices":prices,
         }
 
         client.post("api/v1/user/changeUser", data)
@@ -111,18 +118,17 @@ function ChangeData() {
                     />
                 </label>
 
-                <label>
-                    Image:
-                    <input
-                        type="file"
-                        className={style.input}
-                    />
-                </label>
+                <ImageUser image={image}/>
 
                 <Categories selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}
-                            setSelectedSkills={setSelectedSkills} selectedSkills={selectedSkills} />
+                            setSelectedSkills={setSelectedSkills} selectedSkills={selectedSkills}
+                            skills={skills} setSkills={setSkills}/>
 
-                <FindSkill selectedSkills={selectedSkills} setSelectedSkills={setSelectedSkills} />
+                <FindSkill  skills={skills} setSkills={setSkills}
+                           selectedSkills={selectedSkills} setSelectedSkills={setSelectedSkills}
+                            prices={prices} setPrices={setPrices}/>
+
+                <PricesSkills skills={skills} selectedSkills={selectedSkills} prices={prices} setPrices={setPrices}/>
 
                 <span className={style.error}>{error}</span>
                 <button type="submit" className={style.button}>Change</button>

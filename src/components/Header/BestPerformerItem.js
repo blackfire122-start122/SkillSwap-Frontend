@@ -1,4 +1,4 @@
-import userImage from "./../../images/user.png"
+import userImage from "../../images/user.png"
 import {Link} from "react-router-dom";
 import style from "./../../styles/BestPerformerItem.module.css"
 

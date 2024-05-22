@@ -1,8 +1,6 @@
 import style from "../../styles/Header.module.css"
-import MenuList from "./MenuList";
-import ProfileLinks from "./ProfileLinks";
+import ProfileLinks from "../../images/ProfileLinks";
 import BestPerformers from "./BestPerformers";
-// import menuImg from "../../images/menu.png"
 
 function Header({user}) {
     return (
@@ -10,7 +8,6 @@ function Header({user}) {
             <div className={style.links}>
                 {/*<img src={menuImg} alt="menu" onClick={}/>*/}
                 <img className={style.logoImg} src="/logo.png" alt="logo"/>
-                <MenuList classname={style.menuList}/>
                 <ProfileLinks user={user} />
             </div>
             <h1 className={style.name}>SkillSwap</h1>

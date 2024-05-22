@@ -1,7 +1,7 @@
 import style from "../../styles/ChangeData.module.css";
 import { useState } from "react";
 import {baseURL} from "../../lib/client";
-import userImage from "./../../images/user.png"
+import userImage from "../../images/user.png"
 
 function ImageUser({image}) {
     const [selectedImage, setSelectedImage] = useState(null);

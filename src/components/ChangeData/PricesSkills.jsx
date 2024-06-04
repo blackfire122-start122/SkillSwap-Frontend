@@ -2,7 +2,7 @@ import style from "../../styles/ChangeData.module.css";
 import {client} from "../../lib/client";
 import {useEffect, useState} from "react";
 
-function PricesSkills({skills, selectedSkills, prices, setPrices}) {
+function PricesSkills({skills, selectedSkills, prices, setPrices, userId}) {
     const [pricesSkillsUser, setPricesSkillsUser] = useState([])
 
     function handlePrice(e,id){
@@ -12,7 +12,7 @@ function PricesSkills({skills, selectedSkills, prices, setPrices}) {
     }
 
     function getPriceSkillsUser() {
-        client.get("api/v1/user/getPriceSkills")
+        client.get(`api/v1/user/getPriceSkills?userId=${userId}`)
             .then(function (response) {
                 setPricesSkillsUser(response.data)
                 let data = prices

@@ -17,7 +17,7 @@ function Login() {
                 if (response.data.Login === "OK"){
                     navigate('/');
                 } else if (response.data.Login === "User has been registered successfully"){
-                    navigate('/profile');
+                    navigate(`/profile/${username}`);
                 }
             })
             .catch(function (error) {

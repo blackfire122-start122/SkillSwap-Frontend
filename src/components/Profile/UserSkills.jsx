@@ -6,13 +6,13 @@ function UserSkills({user}) {
     const [prices, setPrices] = useState([])
 
     function getPriceSkillsUser() {
-        client.get("api/v1/user/getPriceSkills")
-            .then(function (response) {
-                setPrices(response.data)
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
+        // client.get(`api/v1/user/getPriceSkills?userId=${showingUser ? showingUser.id : user.id}`)
+        //     .then(function (response) {
+        //         setPrices(response.data)
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error)
+        //     })
     }
 
     useEffect(()=>{

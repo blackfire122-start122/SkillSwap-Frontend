@@ -9,6 +9,7 @@ import ImageUser from "../components/ChangeData/ImageUser";
 
 function ChangeData() {
     const [username, setUsername] = useState("")
+    const [userId, setUserId] = useState("")
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [image, setImage] = useState("")
@@ -26,6 +27,7 @@ function ChangeData() {
                 setEmail(response.data.email)
                 setPhone(response.data.phone)
                 setImage(response.data.image)
+                setUserId(response.data.id)
                 setSelectedSkills(Array.from(response.data.skills).map(skill => skill.id))
                 setSelectedCategories(Array.from(response.data.categories).map(category => category.id))
             })
@@ -128,7 +130,7 @@ function ChangeData() {
                            selectedSkills={selectedSkills} setSelectedSkills={setSelectedSkills}
                             prices={prices} setPrices={setPrices}/>
 
-                <PricesSkills skills={skills} selectedSkills={selectedSkills} prices={prices} setPrices={setPrices}/>
+                <PricesSkills skills={skills} selectedSkills={selectedSkills} prices={prices} setPrices={setPrices} userId={userId}/>
 
                 <span className={style.error}>{error}</span>
                 <button type="submit" className={style.button}>Change</button>

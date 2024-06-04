@@ -1,5 +1,5 @@
 import style from "../../styles/Header.module.css"
-import ProfileLinks from "../../images/ProfileLinks";
+import ProfileLinks from "./ProfileLinks";
 import BestPerformers from "./BestPerformers";
 
 function Header({user}) {

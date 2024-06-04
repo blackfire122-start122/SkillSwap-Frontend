@@ -23,7 +23,7 @@ function BestPerformer({bestPerformer}) {
     }
 
     return (
-        <Link to="/" className={style.bestPerformer}>
+        <Link to={`profile/${bestPerformer.username}`} className={style.bestPerformer}>
             <img src={userImage} alt={bestPerformer.username}/>
             <h4>{bestPerformer.username}</h4>
             <div>{renderStars()}</div>

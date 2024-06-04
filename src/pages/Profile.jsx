@@ -1,17 +1,24 @@
-import {baseURL, client} from "../lib/client"
+import {client} from "../lib/client"
 import {useEffect, useState} from "react"
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import style from "../styles/Profile.module.css"
-import userImage from "../images/user.png";
+import { useParams } from 'react-router-dom'
+import Header from "../components/Profile/Header";
+import MainProfile from "../components/Profile/MainProfile";
 
 function Profile() {
     const [user, setUser] = useState({})
+    const [showingUser, setShowingUser] = useState(null)
     const navigate = useNavigate ()
+    const { userName } = useParams()
 
     function getUser() {
         client.get("api/v1/user/getUser")
             .then(function (response) {
                 setUser(response.data)
+                if (response.data.username !== userName){
+                    getUserData()
+                }
             })
             .catch(function (error) {
                 if (!error.response){
@@ -19,7 +26,26 @@ function Profile() {
                     return
                 }
                 if(error.response.status === 401){
-                    navigate('/login')
+                    // navigate('/login')
+                    console.log("anon")
+                }else {
+                    console.log(error)
+                }
+            })
+    }
+
+    function getUserData() {
+        client.get("api/v1/user/getUserData/"+userName)
+            .then(function (response) {
+                setShowingUser(response.data)
+            })
+            .catch(function (error) {
+                if (!error.response){
+                    console.log(error)
+                    return
+                }
+                if(error.response.status === 404){
+                    console.log(404)
                 }else {
                     console.log(error)
                 }
@@ -30,27 +56,10 @@ function Profile() {
         getUser()
     }, [])
 
-    function handleLogout(){
-        client.get("api/v1/user/logout")
-            .then(function (response) {
-                navigate('/')
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
-    }
-
     return (
         <div className={style.profile}>
-            <img className={style.userImg} src={user.image ? baseURL+"api/v1/user/image/"+user.image : userImage} alt={user.username || "user Img"}/>
-            <div className={style.userInfo}>
-                <h1>{user.username}</h1>
-
-                <Link className={style.changeDataBtn} to="/changeData">
-                    <h2>Change data</h2>
-                </Link>
-                <button onClick={handleLogout} className={style.btnLogout}>Logout</button>
-            </div>
+            <Header user={showingUser ? showingUser: user} showingUser={showingUser}/>
+            <MainProfile user={user} showingUser={showingUser} setShowingUser={setShowingUser}/>
         </div>
     )
 }

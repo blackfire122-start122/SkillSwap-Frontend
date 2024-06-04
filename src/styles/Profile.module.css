@@ -15,16 +15,38 @@
 }
 
 .userImg{
-    margin: 1%;
     width: 10em;
 }
 
 .profile{
     display: flex;
+    flex-direction: column;
 }
 
-.userInfo{
+.userActions{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.categories{
+    display: flex;
+    overflow-x: auto;
+}
+
+.category{
+    width: 12em;
+    padding: 1%;
+}
+
+.categoriesRating{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 }

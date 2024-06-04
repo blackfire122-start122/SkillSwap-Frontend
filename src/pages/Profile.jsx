@@ -1,15 +1,14 @@
 import {client} from "../lib/client"
 import {useEffect, useState} from "react"
-import {useNavigate} from 'react-router-dom'
 import style from "../styles/Profile.module.css"
 import { useParams } from 'react-router-dom'
 import Header from "../components/Profile/Header";
 import MainProfile from "../components/Profile/MainProfile";
+import BottomLinks from "../components/Profile/BottomLinks";
 
 function Profile() {
     const [user, setUser] = useState({})
     const [showingUser, setShowingUser] = useState(null)
-    const navigate = useNavigate ()
     const { userName } = useParams()
 
     function getUser() {
@@ -26,8 +25,7 @@ function Profile() {
                     return
                 }
                 if(error.response.status === 401){
-                    // navigate('/login')
-                    console.log("anon")
+                    getUserData()
                 }else {
                     console.log(error)
                 }
@@ -60,6 +58,7 @@ function Profile() {
         <div className={style.profile}>
             <Header user={showingUser ? showingUser: user} showingUser={showingUser}/>
             <MainProfile user={user} showingUser={showingUser} setShowingUser={setShowingUser}/>
+            {showingUser ? null : <BottomLinks/>}
         </div>
     )
 }

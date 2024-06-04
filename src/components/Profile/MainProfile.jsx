@@ -7,7 +7,7 @@ function MainProfile({user, showingUser, setShowingUser}) {
     return (
         <main className={style.main} >
             <Reviews user={user} showingUser={showingUser} setShowingUser={setShowingUser} />
-            <UserSkills user={showingUser ? showingUser : user} />
+            <UserSkills user={user} showingUser={showingUser} />
         </main>
     )
 }

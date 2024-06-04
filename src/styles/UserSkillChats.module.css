@@ -1,0 +1,13 @@
+.skillChats{
+    display: flex;
+    justify-content: space-between;
+}
+
+.skillChat{
+    display: block;
+    border-bottom: 1px solid black;
+    margin: 1%;
+    padding: 1%;
+    text-decoration: none;
+    color: black;
+}

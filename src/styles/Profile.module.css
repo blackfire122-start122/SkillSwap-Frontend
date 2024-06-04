@@ -14,6 +14,7 @@
     padding: 5px 10px;
 }
 
+
 .userImg{
     width: 10em;
 }
@@ -49,4 +50,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+.messages{
+    display: flex;
+    flex-direction: column;
 }

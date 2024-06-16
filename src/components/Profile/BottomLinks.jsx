@@ -1,10 +1,10 @@
 import style from "../../styles/Profile.module.css"
 import {Link} from "react-router-dom";
 
-function BottomLinks({user}) {
+function BottomLinks() {
     return (
-        <div>
-            <Link to="/userSkillChats">Skill Chats</Link>
+        <div className={style.bottomLinks}>
+            <Link className={style.chatsLink} to="/userSkillChats">Skill Chats</Link>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import userImage from "../../images/user.png"
 import {Link} from "react-router-dom";
 import style from "./../../styles/BestPerformerItem.module.css"
+import {baseURL} from "../../lib/client";
 
 function BestPerformer({bestPerformer}) {
     if (!bestPerformer){
@@ -13,9 +14,9 @@ function BestPerformer({bestPerformer}) {
 
         for (let i = 0; i < 5; i++) {
             if (i < starCount) {
-                stars.push(<span key={i}>&#9733;</span>)
+                stars.push(<span className={style.star} key={i}>&#9733;</span>)
             } else {
-                stars.push(<span key={i}>&#9734;</span>)
+                stars.push(<span className={style.star} key={i}>&#9734;</span>)
             }
         }
 
@@ -24,7 +25,7 @@ function BestPerformer({bestPerformer}) {
 
     return (
         <Link to={`profile/${bestPerformer.username}`} className={style.bestPerformer}>
-            <img src={userImage} alt={bestPerformer.username}/>
+            <img className={style.userImg} src={bestPerformer.image ? baseURL+"api/v1/user/image/"+bestPerformer.image : userImage} alt={bestPerformer.username || "user Img"}/>
             <h4>{bestPerformer.username}</h4>
             <div>{renderStars()}</div>
         </Link>

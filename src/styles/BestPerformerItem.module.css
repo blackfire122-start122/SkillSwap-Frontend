@@ -4,5 +4,25 @@
     align-items: center;
     text-decoration: none;
     color: black;
-    padding: 1%;
+    width: 4em;
+    padding:0 1%;
+}
+
+.userImg{
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bestPerformer h4{
+    align-self: flex-start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.star{
+    color: yellow;
 }

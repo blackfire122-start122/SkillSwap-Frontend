@@ -1,5 +1,5 @@
 import style from "../styles/Chat.module.css"
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {baseURL, client} from "../lib/client";
 import {useEffect, useState, useCallback} from "react";
 import useWebSocket from "react-use-websocket";
@@ -12,6 +12,7 @@ function Chat() {
     const [messages, setMessages] = useState([]);
     const [countMessages, setCountMessages] = useState(0);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate ()
 
     const { sendMessage, lastMessage, readyState } = useWebSocket(baseURL + "chat/" + chatID);
 
@@ -36,7 +37,9 @@ function Chat() {
                 setLoading(false)
             })
             .catch(error => {
-                console.log(error)
+                if (error.response.status === 403){
+                    navigate("/")
+                }
                 setLoading(false)
             })
     }

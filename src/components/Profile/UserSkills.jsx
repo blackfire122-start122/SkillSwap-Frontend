@@ -29,7 +29,7 @@ function UserSkills({user, showingUser}) {
         if (user.id){
             client.post(`api/v1/user/order`,{"skillId":parseInt(skill.id),"toUser":parseInt(showingUser.id)})
                 .then(function (response) {
-                    console.log(response.data)
+                    navigate(`/chat/${showingUser.username}/${skill.name}/${response.data.chatId}`)
                 })
                 .catch(function (error) {
                     console.log(error)

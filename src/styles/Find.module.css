@@ -1,6 +1,7 @@
 .findDiv {
     width: 100%;
     text-align: center;
+    min-height: 100vh;
 }
 
 .inputWrapper {
@@ -35,19 +36,22 @@
 .user, .category, .skill{
     align-items: center;
     display: flex;
-    justify-content: space-between;
-
-}
-
-.category, .skill{
     justify-content: space-around;
+    text-decoration: none;
+    color: black;
 }
 
-.category h3, .skill h3{
-    width: 12em;
+.category h3, .skill h3, .user h3{
+    width: 100%;
 }
 
 .userImage, .categoryImage, .skillImage{
     height: 3em;
+    width: 3em;
     border-radius: 50%;
+    object-fit: cover;
+}
+
+.imageContainer{
+    width: 100%;
 }

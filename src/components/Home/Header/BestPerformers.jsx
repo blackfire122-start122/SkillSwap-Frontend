@@ -1,6 +1,6 @@
-import BestPerformer from "./BestPerformerItem";
-import style from "./../../styles/BestPerformers.module.css"
-import {client} from "../../lib/client";
+import BestPerformerItem from "./BestPerformerItem";
+import style from "../../../styles/BestPerformers.module.css"
+import {client} from "../../../lib/client";
 import {useEffect, useState} from "react";
 
 function BestPerformers() {
@@ -23,7 +23,7 @@ function BestPerformers() {
     return (
         <div className={style.bestPerformers}>
             {bestPerformers.map((bestPerformer)=>(
-                <BestPerformer key={bestPerformer.id} bestPerformer={bestPerformer}/>
+                <BestPerformerItem key={bestPerformer.id} bestPerformer={bestPerformer}/>
             ))}
         </div>
     )

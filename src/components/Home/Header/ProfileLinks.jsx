@@ -1,7 +1,7 @@
-import style from "../../styles/ProfileLinks.module.css"
-import userImage from "../../images/user.png"
+import style from "../../../styles/ProfileLinks.module.css"
+import userImage from "../../../images/user.png"
 import {Link} from "react-router-dom"
-import {baseURL} from "../../lib/client"
+import {baseURL} from "../../../lib/client"
 
 function ProfileLinks({user}) {
     return (

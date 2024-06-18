@@ -1,12 +1,14 @@
 import {client} from "../lib/client"
 import {useEffect, useState} from "react"
 import style from "../styles/UserSkillChats.module.css"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function UserSkillChats() {
     const [user, setUser] = useState({})
     const [customerSkillChats, setCustomerSkillChats] = useState([])
     const [performerSkillChats, setPerformerSkillChats] = useState([])
+
+    const navigate = useNavigate()
 
     function getUser() {
         client.get("api/v1/user/getUser")
@@ -14,7 +16,9 @@ function UserSkillChats() {
                 setUser(response.data)
             })
             .catch(function (error) {
-                console.log(error)
+                if (error.response.status === 401){
+                    navigate("/login")
+                }
             })
     }
 
@@ -46,7 +50,7 @@ function UserSkillChats() {
 
     return (
         <div className={style.skillChats}>
-            <div>
+            <div className={style.chatsContainer}>
                 <h1>Customer Skill Chat</h1>
                 {customerSkillChats.map((customerSkillChat)=>(
                     <Link
@@ -54,12 +58,17 @@ function UserSkillChats() {
                         className={style.skillChat}
                         key={customerSkillChat.id}
                     >
-                        <h3>{customerSkillChat.skill.name}</h3>
+                        <h3>
+                            <span>{customerSkillChat.skill.name}</span>
+                            <span>{customerSkillChat.performer.Username}</span>
+                        </h3>
                     </Link>
                 ))}
             </div>
 
-            <div>
+            <div className={style.verticalLine}></div>
+
+            <div className={style.chatsContainer}>
                 <h1>Performer Skill Chat</h1>
                 {performerSkillChats.map((performerSkillChat)=>(
                     <Link
@@ -67,7 +76,10 @@ function UserSkillChats() {
                         className={style.skillChat}
                         key={performerSkillChat.id}
                     >
-                        <h3>{performerSkillChat.skill.name}</h3>
+                        <h3>
+                            <span>{performerSkillChat.skill.name}</span>
+                            <span>{performerSkillChat.customer.Username}</span>
+                        </h3>
                     </Link>
                 ))}
             </div>

@@ -1,8 +1,6 @@
 import style from "../../../styles/Find.module.css"
 import {useState} from "react";
-import {baseURL, client} from "../../../lib/client";
-import skillImage from "../../../images/skill.png"
-import categoryImage from "../../../images/category.png"
+import {client} from "../../../lib/client";
 import findImage from "../../../images/find.png"
 import ResultUsers from "./ResultUsers";
 import ResultCategories from "./ResultCategories";

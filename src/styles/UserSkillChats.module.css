@@ -3,6 +3,16 @@
     justify-content: space-between;
 }
 
+.chatsContainer{
+    width: 100%;
+}
+
+.verticalLine{
+    width: 1px;
+    background: #342e32;
+    height: 100vh;
+}
+
 .skillChat{
     display: block;
     border-bottom: 1px solid black;
@@ -10,4 +20,9 @@
     padding: 1%;
     text-decoration: none;
     color: black;
+}
+
+.skillChat h3{
+    display: flex;
+    justify-content: space-between;
 }

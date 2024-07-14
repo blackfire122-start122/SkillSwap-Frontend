@@ -37,13 +37,16 @@ function Chat() {
         client.get(`api/v1/user/skillChatMessages?chatId=${chatID}&countMessages=${countMessages}`)
             .then(response => {
                 let messagesData = response.data.reverse()
+                console.log(messagesData)
                 setMessages(prevMessages => [...messagesData, ...prevMessages]);
                 setCountMessages(prevCount => prevCount + messagesData.length);
                 setLoading(false)
             })
             .catch(error => {
-                if (error.response.status === 403){
-                    navigate("/")
+                if (error.response){
+                    if (error.response.status === 403){
+                        navigate("/")
+                    }
                 }
                 setLoading(false)
             })

@@ -29,6 +29,11 @@ body{
     overflow-wrap: break-word;
 }
 
+.messageUser time, .messageFriend time{
+    font-size: 0.5em;
+    float: right;
+}
+
 .messageFriend p{
     float: left;
 }

@@ -21,9 +21,12 @@ function Messages({messages, user, getMessages }) {
 
     return (
         <div className={style.messages} onScroll={handleScrollMessages}>
-            {messages.map((m) => (
-                <div className={user.id.toString() === m.userId.toString() ? style.messageUser : style.messageFriend} key={m.id}>
-                    <p>{m.message}</p>
+            {messages.map((m, i) => (
+                <div className={user.id.toString() === m.userId.toString() ? style.messageUser : style.messageFriend} key={i}>
+                    <p>{m.message}
+                        <br/>
+                        <time>{m.createdAt.slice(11,19)}</time>
+                    </p>
                 </div>
             ))}
             <div ref={messagesEndRef} />

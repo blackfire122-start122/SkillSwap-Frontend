@@ -1,28 +1,83 @@
-.skillChats{
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #ffffff;
+    --border-color: #d1d1d1;
+    --hover-color: #f1f1f1;
+    --text-color: #333333;
+}
+
+.skillChats {
     display: flex;
     justify-content: space-between;
+    gap: 2rem;
+    padding: 1rem;
 }
 
-.chatsContainer{
-    width: 100%;
+.chatsContainer {
+    flex: 1;
+    padding: 1rem;
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.verticalLine{
+.verticalLine {
     width: 1px;
-    background: #342e32;
-    height: 100vh;
+    background: var(--border-color);
 }
 
-.skillChat{
+.skillChat {
     display: block;
-    border-bottom: 1px solid black;
-    margin: 1%;
-    padding: 1%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.skillChat h3{
+.skillChat:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+.skillChat h3 {
     display: flex;
     justify-content: space-between;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.skillChat span {
+    display: inline-block;
+}
+
+.descriptionSkillChats {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.descriptionSkillChats p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 0;
+    font-weight: normal;
+}
+
+.image {
+    height: 4em;
+    width: 4em;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.btnToProfile{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
 }

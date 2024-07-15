@@ -6,7 +6,7 @@ function Header({user}) {
     return (
         <header className={style.header}>
             <div className={style.links}>
-                <img className={style.logoImg} src={"/public/logo.png"} alt="logo"/>
+                <img className={style.logoImg} src="/logo.png" alt="logo"/>
                 <ProfileLinks user={user} />
             </div>
             <h1 className={style.name}>SkillSwap</h1>

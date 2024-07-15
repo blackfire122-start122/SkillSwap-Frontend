@@ -46,7 +46,7 @@ function Reviews({user, setShowingUser, showingUser}) {
     }
 
     return (
-        <div className={style.userReviews}>
+        <div>
             {reviews.map((review) => (
                     <div key={review.id} className={style.review}>
                         <h3>{review.reviewer.username}</h3>

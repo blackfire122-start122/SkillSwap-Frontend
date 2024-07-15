@@ -37,7 +37,6 @@ function Chat() {
         client.get(`api/v1/user/skillChatMessages?chatId=${chatID}&countMessages=${countMessages}`)
             .then(response => {
                 let messagesData = response.data.reverse()
-                console.log(messagesData)
                 setMessages(prevMessages => [...messagesData, ...prevMessages]);
                 setCountMessages(prevCount => prevCount + messagesData.length);
                 setLoading(false)
@@ -105,14 +104,16 @@ function Chat() {
 
     useEffect(() => {
         if (lastMessage !== null) {
-            const data = JSON.parse(lastMessage.data);
+            const data = JSON.parse(lastMessage.data)
             if (data.type === "msg") {
-                setMessages(prevMessages => [...prevMessages, data.content]);
-                setCountMessages(prevCount => prevCount + 1);
+                setMessages(prevMessages => [...prevMessages, data.content])
+                setCountMessages(prevCount => prevCount + 1)
             }
             else if (data.type === "changeStatus") {
                 if (selectRef.current) {
-                    selectRef.current.value = data.content;
+                    selectRef.current.value = data.content
+                    const updatedChat = { ...chat, status: statuses.find((status) => status.id === parseInt(data.content)).status }
+                    setChat(updatedChat)
                 }
             }
         }

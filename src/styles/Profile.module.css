@@ -1,71 +1,229 @@
-.changeDataBtn{
+.changeDataBtn {
+    margin-top: 2%;
     text-decoration: none;
     color: black;
-    border-radius: 15px;
-    border:2px solid black;
-    padding: 5px 10px;
+    border-radius: 12px;
+    border: 2px solid black;
+    padding: 8px 16px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.btnLogout{
+.changeDataBtn:hover {
+    background-color: black;
+    color: white;
+}
+
+.btnLogout {
+    margin-top: 2%;
+    width: 100%;
     background: red;
-    border-radius: 15px;
-    border:2px solid #af0202;
-    font-size: 1.5em;
-    padding: 5px 10px;
+    border-radius: 12px;
+    border: 2px solid #af0202;
+    font-size: 1.2em;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
+.btnLogout:hover {
+    background-color: #af0202;
+    border-color: red;
+}
 
-.userImg{
+.userImg {
     width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.profile{
+.profile {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100vh;
 }
 
-.userActions{
+.userActions {
+    position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    right: 0;
+    top: 10em;
+    background: #333333;
+    border-radius: 12px 0 0 12px;
+    padding: 5px;
 }
 
-.header{
+.header {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    align-items: center;
 }
 
-.categories{
+.categories {
     display: flex;
     overflow-x: auto;
+    gap: 10px;
+    padding: 10px 0;
 }
 
-.category{
-    width: 12em;
-    padding: 1%;
+.category {
+    padding: 8px 16px;
+    background-color: #e7e7e7;
+    border-radius: 8px;
+    white-space: nowrap;
 }
 
-.categoriesRating{
+.categoriesRating {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.chatsLink {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.chatsLink:hover {
+    background-color: black;
+    color: white;
+}
+
+.bottomLinks {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.userSkills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.skill {
+    width: 15em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.skill:hover {
+    background-color: #f5f5f5;
+}
+
+.skillData {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.skillData h4 {
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+.review {
+    width: 15em;
+    border-radius: 12px;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviewText {
+    padding: 0 10%;
+}
+
+.rating {
+    text-align: right;
+    font-weight: bold;
+}
+
+.review input {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 5px;
+    margin: 5px 0;
+    outline: none;
+}
+
+.review div {
+    display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.messages{
+.orderAService {
+    background: #e7e7e7;
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.orderAService:hover {
+    background-color: #d7d7d7;
+}
+
+.menuActions{
+    height: 5em;
+}
+
+.actions{
+    display: flex;
+    align-items: center;
+}
+
+.logoImg{
+    width: 5em;
+    height: 5em;
+    object-fit: cover;
+}
+
+.navAndActions{
     display: flex;
     flex-direction: column;
-}
-
-.chatsLink{
-    text-decoration: none;
-    color: black;
-    font-size: 1.5em;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 2px;
-}
-
-.bottomLinks{
-    margin: 1%;
+    align-items: center;
 }

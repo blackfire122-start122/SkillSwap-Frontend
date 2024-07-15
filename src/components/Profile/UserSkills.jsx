@@ -51,7 +51,7 @@ function UserSkills({user, showingUser}) {
                             <h4>{skill.name}</h4>
                             <h4>Price: {priceInfo ? priceInfo.Price : 'Loading...'}</h4>
                         </div>
-                        {user.id !== showUser.id ? <button onClick={(e)=>{handleOrderService(skill)}}>Order a service</button>: null}
+                        {user.id !== showUser.id ? <button className={style.orderAService} onClick={(e)=>{handleOrderService(skill)}}>Order a service</button>: null}
                     </div>
                 )
             }) : null}

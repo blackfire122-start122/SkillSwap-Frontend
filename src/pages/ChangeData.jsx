@@ -1,11 +1,12 @@
-import {client} from "../lib/client"
+import {baseURL, client} from "../lib/client"
 import {useEffect, useState} from "react"
-import { useNavigate  } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import style from "../styles/ChangeData.module.css";
 import FindSkill from "../components/ChangeData/FindSkill";
 import Categories from "../components/ChangeData/Categories";
 import PricesSkills from "../components/ChangeData/PricesSkills";
 import ImageUser from "../components/ChangeData/ImageUser";
+import userImage from "../images/user.png";
 
 function ChangeData() {
     const [username, setUsername] = useState("")
@@ -91,6 +92,10 @@ function ChangeData() {
 
     return (
         <div className={style.container}>
+            <Link className={style.btnToProfile} to={"/profile/"+username}>
+                <img src={image ? baseURL+"api/v1/user/image/"+image : userImage} alt="User image" className={style.image} />
+            </Link>
+
             <form onSubmit={handleSubmit} className={style.form}>
                 <label>
                     Username:

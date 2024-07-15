@@ -1,7 +1,7 @@
 import {client} from "../lib/client"
 import {useEffect, useState} from "react"
 import style from "../styles/Profile.module.css"
-import { useParams } from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import Header from "../components/Profile/Header";
 import MainProfile from "../components/Profile/MainProfile";
 import BottomLinks from "../components/Profile/BottomLinks";

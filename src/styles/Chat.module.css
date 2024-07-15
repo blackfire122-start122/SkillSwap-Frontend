@@ -21,7 +21,7 @@ body{
 .messageUser p, .messageFriend p{
     max-width: 80%;
     border-radius: 15px;
-    background: #0056b3;
+    border: 2px solid black;
     margin: 1%;
     font-size: 1.7em;
     float: right;
@@ -62,7 +62,7 @@ body{
 .toUserImage{
     object-fit: cover;
     border-radius: 50%;
-    height: 4em;
+    height: 100%;
     width: 4em;
 }
 
@@ -79,10 +79,32 @@ body{
     border-radius: 5px;
 }
 
-/*.options input{*/
-/*    background: transparent;*/
-/*    border: solid 2px black;*/
-/*    padding: 5px;*/
-/*    border-radius: 5px;*/
-/*    outline: none;*/
-/*}*/
+.linkToUserProfile{
+    height: 4em;
+    display: flex;
+    text-decoration: none;
+    color: black;
+    width: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toChatsImage{
+    height: 100%;
+    object-fit: cover;
+}
+
+.toChats{
+    height: 3em;
+}
+
+.selectStatus{
+    font-size: 1.2em;
+    border-radius: 10px 0 0 10px;
+}
+
+.changeSelectBtn{
+    font-size: 1.2em;
+    border-radius: 0 10px 10px 0;
+    background: none;
+}

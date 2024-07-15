@@ -1,7 +1,8 @@
-import {client} from "../lib/client"
+import {baseURL, client} from "../lib/client"
 import {useEffect, useState} from "react"
 import style from "../styles/UserSkillChats.module.css"
 import {Link, useNavigate} from "react-router-dom";
+import userImage from "../images/user.png";
 
 function UserSkillChats() {
     const [user, setUser] = useState({})
@@ -51,7 +52,7 @@ function UserSkillChats() {
     return (
         <div className={style.skillChats}>
             <div className={style.chatsContainer}>
-                <h1>Customer Skill Chat</h1>
+                <h1 className={style.descriptionSkillChats}>Customer Skill Chat <p>work for me</p></h1>
                 {customerSkillChats.map((customerSkillChat)=>(
                     <Link
                         to={`/chat/${customerSkillChat.performer.Username}/${customerSkillChat.skill.name}/${customerSkillChat.id}`}
@@ -69,7 +70,7 @@ function UserSkillChats() {
             <div className={style.verticalLine}></div>
 
             <div className={style.chatsContainer}>
-                <h1>Performer Skill Chat</h1>
+                <h1 className={style.descriptionSkillChats}>Performer Skill Chat <p>Me need do</p></h1>
                 {performerSkillChats.map((performerSkillChat)=>(
                     <Link
                         to={`/chat/${performerSkillChat.customer.Username}/${performerSkillChat.skill.name}/${performerSkillChat.id}`}
@@ -83,7 +84,9 @@ function UserSkillChats() {
                     </Link>
                 ))}
             </div>
-
+            <Link className={style.btnToProfile} to={"/profile/"+user.username}>
+                <img src={user.image ? baseURL+"api/v1/user/image/"+user.image : userImage} alt="User image" className={style.image} />
+            </Link>
         </div>
     )
 }

@@ -6,6 +6,7 @@ import useWebSocket from "react-use-websocket";
 import Messages from "../components/Chat/Messages";
 import InputMessage from "../components/Chat/InputMessge";
 import Header from "../components/Chat/Header";
+import {string} from "prop-types";
 
 function Chat() {
     const { toUserName, skill, chatID } = useParams();
@@ -106,6 +107,9 @@ function Chat() {
         if (lastMessage !== null) {
             const data = JSON.parse(lastMessage.data)
             if (data.type === "msg") {
+                if (data.content.indexRedis){
+                    data.content.id = "indexRedis"+data.content.indexRedis
+                }
                 setMessages(prevMessages => [...prevMessages, data.content])
                 setCountMessages(prevCount => prevCount + 1)
             }
@@ -115,6 +119,17 @@ function Chat() {
                     const updatedChat = { ...chat, status: statuses.find((status) => status.id === parseInt(data.content)).status }
                     setChat(updatedChat)
                 }
+            } else if (data.type === "msgRead") {
+                setMessages(prevMessages => {
+                    console.log(data.content)
+                    let msgRead = prevMessages[prevMessages.findIndex((m)=>(m.id.toString()===data.content))]
+
+                    if (msgRead){
+                        msgRead.read = true
+                    }
+
+                    return prevMessages
+                })
             }
         }
     }, [lastMessage]);
@@ -123,7 +138,7 @@ function Chat() {
         <div className={style.chat}>
             {toUser ? <Header sendMessage={sendMessage} toUser={toUser} chat={chat} skill={skill} statuses={statuses} selectRef={selectRef}/> : null}
             <main>
-                {user ? <Messages messages={messages} user={user} getMessages={getMessages}/> : null}
+                {user ? <Messages messages={messages} user={user} getMessages={getMessages} sendMessage={sendMessage} />: null}
                 <InputMessage sendMessage={sendMessage}/>
             </main>
         </div>

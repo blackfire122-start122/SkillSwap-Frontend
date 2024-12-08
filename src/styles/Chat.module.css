@@ -108,3 +108,14 @@ body{
     border-radius: 0 10px 10px 0;
     background: none;
 }
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: blue;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    float: right;
+}

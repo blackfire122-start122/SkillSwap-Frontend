@@ -25,36 +25,49 @@ function Reviews({user, setShowingUser, showingUser}) {
         getReviewsUser()
     },[user,showingUser])
 
-    function handleFormReview(e){
-        e.preventDefault()
+    function handleFormReview(e) {
+        e.preventDefault();
 
-        client.post("api/v1/user/createReview", {"review":review, "rating":parseInt(rating), "toUser":parseInt(showingUser.id)})
-            .then(function (response) {
-                const updatedUser = { ...showingUser, rating: response.data.NewRating }
-                setShowingUser(updatedUser)
+        client.post("api/v1/user/createReview", {
+            "review": review,
+            "rating": parseInt(rating),
+            "toUser": parseInt(showingUser.id)
+        })
+        .then(function (response) {
+            const updatedUser = { ...showingUser, rating: response.data.NewRating };
+            setShowingUser(updatedUser);
 
-                setReviews([...reviews, {
-                    "id":response.data.Id,
-                    "rating":rating,
-                    "review":review,
-                    "reviewer": {"id":user.id, "username":user.username}
-                }])
+            const updatedReviews = reviews.map(r => {
+                if (r.id.toString() === response.data.Id) {
+                    return {
+                        ...r,
+                        rating: rating,
+                        review: review
+                    }
+                }
+                return r
             })
-            .catch(function (error) {
-                console.log(error)
-            })
+
+            const reviewExists = reviews.some(r => r.id.toString() === response.data.Id)
+            if (!reviewExists) {
+                updatedReviews.push({
+                    id: response.data.Id,
+                    rating: rating,
+                    review: review,
+                    reviewer: { id: user.id, username: user.username }
+                })
+            }
+
+            setReviews(updatedReviews);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
+
     return (
-        <div>
-            {reviews.map((review) => (
-                    <div key={review.id} className={style.review}>
-                        <h3>{review.reviewer.username}</h3>
-                        <p className={style.reviewText}>{review.review}</p>
-                        <p className={style.rating}>{review.rating}</p>
-                    </div>
-                )
-            )}
+        <div className={style.reviews}>
             {showingUser ?
                 <form onSubmit={handleFormReview} className={style.review}>
                     <h3>{user.username}</h3>
@@ -83,6 +96,15 @@ function Reviews({user, setShowingUser, showingUser}) {
 
                 </form>
                 :null}
+
+            {reviews.map((review) => (
+                    <div key={review.id} className={style.review}>
+                        <h3>{review.reviewer.username}</h3>
+                        <p className={style.reviewText}>{review.review}</p>
+                        <p className={style.rating}>{review.rating}</p>
+                    </div>
+                )
+            )}
         </div>
     )
 }

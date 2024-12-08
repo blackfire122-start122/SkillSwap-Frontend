@@ -39,6 +39,12 @@
     padding: 5px;
 }
 
+.reviews{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 70vh;
+}
+
 .review {
     width: 15em;
     border-radius: 12px;
